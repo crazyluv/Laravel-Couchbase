@@ -1,5 +1,5 @@
 {
-  "name": "ytake/laravel-couchbase",
+  "name": "crazyluv/laravel-couchbase",
   "description": "Couchbase providers for Laravel",
   "keywords": [
     "laravel",
@@ -11,8 +11,8 @@
   ],
   "authors": [
     {
-      "name": "Yuuki Takezawa",
-      "email": "yuuki.takezawa@comnect.jp.net"
+      "name": "TaeYoung Choi",
+      "email": "crazyluv1@gmail.com"
     }
   ],
   "license": "MIT",
@@ -42,9 +42,9 @@
     "friendsofphp/php-cs-fixer": "^2.0"
   },
   "autoload": {
-    "psr-4": {
-      "Ytake\\LaravelCouchbase\\": "src"
-    },
+    "classmap": [
+      "src/"
+    ],
     "files": [
       "src/transfer.php"
     ]
@@ -72,7 +72,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Ytake\\LaravelCouchbase\\CouchbaseServiceProvider",
+        "Crazyluv\\LaravelCouchbase\\Eloquent\\CouchbaseServiceProvider",
         "Ytake\\LaravelCouchbase\\ConsoleServiceProvider"
       ]
     }
