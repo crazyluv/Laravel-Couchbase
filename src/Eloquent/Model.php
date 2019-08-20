@@ -154,14 +154,17 @@ abstract class Model extends BaseModel
      * @param null|string $value
      * @return string
      */
-    protected function generateMetaId($id = null, $value = null) {
-        if (empty($id))
+    protected function generateMetaId($id = null, $value = null)
+    {
+        if (empty($id)) {
             $id = $this->getAttribute($this->getKeyName());
+        }
 
         $metaId = class_basename(static::class)."::{$id}";
 
-        if (!empty($value))
+        if (!empty($value)) {
             $metaId .= "::".hash('md5', $value);
+        }
 
         return $metaId;
     }
@@ -174,13 +177,9 @@ abstract class Model extends BaseModel
      */
     public function __construct(array $attributes = [])
     {
-
         $this->bootIfNotBooted();
-
         $this->syncOriginal();
-
         $this->fill($attributes);
-
     }
 
     /**
@@ -231,7 +230,6 @@ abstract class Model extends BaseModel
                 $booted[] = $method;
             }
         }
-
     }
 
     /**
@@ -659,8 +657,9 @@ abstract class Model extends BaseModel
     {
         $key = $this->getAttribute($this->getKeyName());
 
-        if (empty($key))
+        if (empty($key)) {
             $key = $this->getMetaId();
+        }
 
         return $key;
     }
@@ -1000,8 +999,9 @@ abstract class Model extends BaseModel
                 $format = explode(':', $value, 2)[1];
                 $attributes[$key] = $attributes[$key]->format($format);
                 // If format is timestamp then casting to integer
-                if ($format == 'U')
+                if ($format == 'U') {
                     $attributes[$key] = (int) $attributes[$key];
+                }
             }
         }
 
@@ -1373,8 +1373,9 @@ abstract class Model extends BaseModel
      * @return bool
      */
     public function isActive() {
-        if ($this->expireDate == null)
+        if ($this->expireDate == null) {
             return true;
+        }
 
         $currentTime = Carbon::now();
 
@@ -1393,10 +1394,11 @@ abstract class Model extends BaseModel
      */
     public function fromDateTime($value)
     {
+        // microseconds timestamps (support for java timestamps)
         if (is_numeric($value)) {
-
-            if (abs($value) >= 2 ** 31)
+            if (abs($value) >= 2 ** 31) {
                 $value = $value / 1000;
+            }
         }
 
         return parent::fromDateTime($value);
@@ -1408,10 +1410,11 @@ abstract class Model extends BaseModel
      */
     protected function asDateTime($value)
     {
+        // microseconds timestamps (support for java timestamps)
         if (is_numeric($value)) {
-
-            if (abs($value) >= 2 ** 31)
+            if (abs($value) >= 2 ** 31) {
                 $value = $value / 1000;
+            }
         }
 
         return parent::asDateTime($value);
@@ -1425,10 +1428,12 @@ abstract class Model extends BaseModel
      */
     protected function asTimestamp($value)
     {
-        $timestamp = $this->asDateTime($value)->getTimestamp() * 1000;
+        $timestamp = parent::asTimestamp($value);
 
-        if (abs($timestamp) < 2 ** 31)
+        // microseconds timestamps (support for java timestamps)
+        if (abs($timestamp) < 2 ** 31) {
             $timestamp *= 1000;
+        }
 
         return $timestamp;
     }
@@ -1502,7 +1507,4 @@ abstract class Model extends BaseModel
 
         return new EmbedsOne($query, $this, $instance, $localKey, $foreignKey, $relation);
     }
-
-
-
 }

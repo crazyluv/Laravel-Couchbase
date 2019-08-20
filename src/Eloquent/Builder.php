@@ -38,7 +38,7 @@ class Builder extends EloquentBuilder
      */
     public function __construct(BaseQueryBuilder $query)
     {
-        if(!($query instanceof QueryBuilder)) {
+        if (!($query instanceof QueryBuilder)) {
             throw new \Exception('Argument 1 passed to '.get_class($this).'::__construct() must be an instance of '.QueryBuilder::class.', instance of '.get_class($query).' given.');
         }
         parent::__construct($query);
@@ -246,7 +246,7 @@ class Builder extends EloquentBuilder
     {
         $query = $hasQuery->getQuery();
         // Get the number of related objects for each possible parent.
-        $relations = $query->pluck($relation->getHasCompareKey())->filter(function($value){
+        $relations = $query->pluck($relation->getHasCompareKey())->filter(function($value) {
             return $value !== null && $value !== '';
         });
         $relationCount = array_count_values(array_map(function ($id) {

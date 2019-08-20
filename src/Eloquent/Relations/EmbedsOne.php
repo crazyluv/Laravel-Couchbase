@@ -66,7 +66,7 @@ class EmbedsOne extends EmbedsOneOrMany
     /**
      * Save an existing model and attach it to the parent model.
      *
-     * @param  \Illuminate\Database\Eloquent\Model $model
+     * @param \Illuminate\Database\Eloquent\Model $model
      * @return \Illuminate\Database\Eloquent\Model|bool
      */
     public function performUpdate(Model $model)
@@ -93,7 +93,7 @@ class EmbedsOne extends EmbedsOneOrMany
     /**
      * Delete an existing model and detach it from the parent model.
      *
-     * @param  \Illuminate\Database\Eloquent\Model $model
+     * @param \Illuminate\Database\Eloquent\Model $model
      * @return int
      */
     public function performDelete(Model $model)
@@ -119,7 +119,7 @@ class EmbedsOne extends EmbedsOneOrMany
     /**
      * Attach the model to its parent.
      *
-     * @param  \Illuminate\Database\Eloquent\Model $model
+     * @param \Illuminate\Database\Eloquent\Model $model
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function associate(Model $model)
@@ -149,4 +149,3 @@ class EmbedsOne extends EmbedsOneOrMany
         return $this->performDelete($model);
     }
 }
-

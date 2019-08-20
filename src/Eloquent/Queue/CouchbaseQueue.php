@@ -56,6 +56,4 @@ class CouchbaseQueue extends Queue
 
         return false;
     }
-
-
 }

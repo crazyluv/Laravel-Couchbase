@@ -1,6 +1,9 @@
 <?php declare(strict_types=1);
+
 namespace Crazyluv\LaravelCouchbase\Eloquent\Relations;
+
 use Illuminate\Database\Eloquent\Relations\MorphTo as EloquentMorphTo;
+
 class MorphTo extends EloquentMorphTo
 {
     /**
@@ -15,10 +18,11 @@ class MorphTo extends EloquentMorphTo
             $this->getQuery()->where($this->ownerKey, '=', $this->parent->{$this->foreignKey});
         }
     }
+
     /**
      * Get all of the relation results for a type.
      *
-     * @param  string $type
+     * @param string $type
      * @return \Illuminate\Database\Eloquent\Collection
      */
     protected function getResultsByType($type)

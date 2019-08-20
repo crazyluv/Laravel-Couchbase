@@ -1,7 +1,9 @@
 <?php declare(strict_types=1);
 namespace Crazyluv\LaravelCouchbase\Eloquent\Relations;
+
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasOne as EloquentHasOne;
+
 class HasOne extends EloquentHasOne
 {
     /**
@@ -13,12 +15,13 @@ class HasOne extends EloquentHasOne
     {
         return $this->getForeignKeyName();
     }
+
     /**
      * Add the constraints for a relationship query.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
-     * @param  \Illuminate\Database\Eloquent\Builder $parent
-     * @param  array|mixed $columns
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Builder $parent
+     * @param array|mixed $columns
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function getRelationQuery(Builder $query, Builder $parent, $columns = ['*'])
@@ -27,6 +30,7 @@ class HasOne extends EloquentHasOne
         $key = $this->wrap($this->getQualifiedParentKeyName());
         return $query->whereNotNull($this->getHasCompareKey());
     }
+
     /**
      * @inheritdoc
      */
@@ -35,6 +39,7 @@ class HasOne extends EloquentHasOne
         $foreignKey = $this->getForeignKeyName();
         return $query->select($foreignKey);
     }
+
     /**
      * Get the key for comparing against the parent key in "has" query.
      *
@@ -44,6 +49,7 @@ class HasOne extends EloquentHasOne
     {
         return $this->foreignKey;
     }
+
     /**
      * Get the plain foreign key.
      *

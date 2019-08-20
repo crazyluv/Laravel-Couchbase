@@ -19,7 +19,8 @@ class CouchbaseConnection extends \Ytake\LaravelCouchbase\Database\CouchbaseConn
     /**
      * @return string
      */
-    public function getBucketName() {
+    public function getBucketName()
+    {
         return $this->bucket;
     }
 
@@ -148,7 +149,6 @@ class CouchbaseConnection extends \Ytake\LaravelCouchbase\Database\CouchbaseConn
         });
     }
 
-
     /**
      * @param string $query
      * @param array $options
@@ -157,5 +157,4 @@ class CouchbaseConnection extends \Ytake\LaravelCouchbase\Database\CouchbaseConn
     {
         $this->event(new QueryFired($query, $options));
     }
-
 }

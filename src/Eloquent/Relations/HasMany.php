@@ -12,10 +12,12 @@ class HasMany extends EloquentHasMany
     {
         return $this->foreignKey;
     }
+
     public function getPlainForeignKey()
     {
         return $this->getForeignKeyName();
     }
+
     /**
      * Get the key for comparing against the parent key in "has" query.
      *
@@ -25,6 +27,7 @@ class HasMany extends EloquentHasMany
     {
         return $this->getForeignKeyName();
     }
+
     /**
      * @inheritdoc
      */
@@ -33,12 +36,13 @@ class HasMany extends EloquentHasMany
         $foreignKey = $this->getHasCompareKey();
         return $query->select($foreignKey);
     }
+
     /**
      * Add the constraints for a relationship query.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
-     * @param  \Illuminate\Database\Eloquent\Builder $parent
-     * @param  array|mixed $columns
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Builder $parent
+     * @param array|mixed $columns
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function getRelationQuery(Builder $query, Builder $parent, $columns = ['*'])
@@ -47,6 +51,7 @@ class HasMany extends EloquentHasMany
         $key = $this->wrap($this->getQualifiedParentKeyName());
         return $query->whereNotNull($this->getHasCompareKey());
     }
+
     /**
      * @param array $models
      * @param Collection $results

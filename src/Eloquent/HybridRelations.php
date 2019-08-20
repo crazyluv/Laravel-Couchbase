@@ -239,6 +239,4 @@ trait HybridRelations
     {
         return $this->parentRelation;
     }
-
-
 }

@@ -19,4 +19,3 @@ class Processor extends BaseProcessor
         return $results;
     }
 }
-

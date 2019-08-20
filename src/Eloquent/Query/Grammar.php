@@ -397,11 +397,11 @@ class Grammar extends BaseGrammar
         }
         if (!empty($query->indexes)) {
             return 'USE INDEX (' . implode(', ', array_map(function ($index) {
-                    if (!in_array($index['type'], [self::INDEX_TYPE_VIEW, self::INDEX_TYPE_GSI])) {
-                        throw new Exception('Unsupported index type ' . json_encode($index['type']) . '.');
-                    }
-                    return $this->wrapValue($index['name']) . ' USING ' . $index['type'];
-                }, $query->indexes)) . ')';
+                if (!in_array($index['type'], [self::INDEX_TYPE_VIEW, self::INDEX_TYPE_GSI])) {
+                    throw new Exception('Unsupported index type ' . json_encode($index['type']) . '.');
+                }
+                return $this->wrapValue($index['name']) . ' USING ' . $index['type'];
+            }, $query->indexes)) . ')';
         }
         return '';
     }
@@ -490,7 +490,7 @@ class Grammar extends BaseGrammar
             if ($token['context'] === 'raw') {
                 $tokenSqls = explode('?', $token['sql']);
                 $tokenSql = $tokenSqls[0];
-                for($i = 1; $i < count($tokenSqls); $i++) {
+                for ($i = 1; $i < count($tokenSqls); $i++) {
                     $data = empty($bindings) ? '?' : self::wrapData(array_shift($bindings));
                     $tokenSql .= $data.$tokenSqls[$i];
                 }
@@ -516,5 +516,4 @@ class Grammar extends BaseGrammar
 
         return '"' . str_replace('"', '""', $value) . '"';
     }
-
 }

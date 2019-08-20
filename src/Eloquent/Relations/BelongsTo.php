@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 namespace Crazyluv\LaravelCouchbase\Eloquent\Relations;
+
 class BelongsTo extends \Illuminate\Database\Eloquent\Relations\BelongsTo
 {
     /**
@@ -14,10 +15,11 @@ class BelongsTo extends \Illuminate\Database\Eloquent\Relations\BelongsTo
             $this->query->where($this->ownerKey, '=', $this->parent->{$this->foreignKey});
         }
     }
+
     /**
      * Set the constraints for an eager load of the relation.
      *
-     * @param  array $models
+     * @param array $models
      */
     public function addEagerConstraints(array $models)
     {

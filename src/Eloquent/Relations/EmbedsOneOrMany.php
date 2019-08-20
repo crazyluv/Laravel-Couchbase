@@ -388,4 +388,3 @@ abstract class EmbedsOneOrMany extends Relation
         return $this->parent->getKey();
     }
 }
-

@@ -156,15 +156,12 @@ class Builder extends CoucubaseBuilder
      * @throws \Exception
      * @return void
      */
-    public function __construct(
-        ConnectionInterface $connection,
-        BaseGrammar $grammar = null,
-        Processor $processor = null
-    ) {
-        if(!($connection instanceof CouchbaseConnection)) {
+    public function __construct(ConnectionInterface $connection, BaseGrammar $grammar = null, Processor $processor = null)
+    {
+        if (!($connection instanceof CouchbaseConnection)) {
             throw new \Exception('Argument 1 passed to '.get_class($this).'::__construct() must be an instance of '.CouchbaseConnection::class.', instance of '.get_class($connection).' given.');
         }
-        if(!($grammar === null || $grammar instanceof Grammar)) {
+        if (!($grammar === null || $grammar instanceof Grammar)) {
             throw new \Exception('Argument 2 passed to '.get_class($this).'::__construct() must be an instance of '.Grammar::class.', instance of '.get_class($grammar).' given.');
         }
 
@@ -633,7 +630,7 @@ class Builder extends CoucubaseBuilder
         $filtered = collect($obj->value->{$column})->reject(function ($val, $key) use ($value) {
             $match = false;
             if (is_object($val)) {
-                foreach ($value AS $matchKey => $matchValue) {
+                foreach ($value as $matchKey => $matchValue) {
                     if ($val->{$matchKey} === $value[$matchKey]) {
                         $match = true;
                     }
@@ -845,7 +842,6 @@ class Builder extends CoucubaseBuilder
      */
     protected function detectValues($values): array
     {
-
         if (!is_array(reset($values))) {
             $values[Helper::TYPE_NAME] = $this->type;
             $values = [$values];
@@ -856,7 +852,6 @@ class Builder extends CoucubaseBuilder
                 $values[$key] = $value;
             }
         }
-
 
         return $values;
     }
@@ -876,6 +871,4 @@ class Builder extends CoucubaseBuilder
 
         return parent::__call($method, $parameters);
     }
-
-
 }

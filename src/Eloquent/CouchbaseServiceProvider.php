@@ -75,5 +75,4 @@ class CouchbaseServiceProvider extends \Ytake\LaravelCouchbase\CouchbaseServiceP
             return new QueueConnector($databaseManager);
         });
     }
-
 }
