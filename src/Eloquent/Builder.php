@@ -1,10 +1,13 @@
 <?php declare(strict_types=1);
+
 namespace Crazyluv\LaravelCouchbase\Eloquent;
+
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Pagination\Paginator;
 use Crazyluv\LaravelCouchbase\Eloquent\Query\Builder as QueryBuilder;
 use Illuminate\Database\Query\Builder as BaseQueryBuilder;
+
 class Builder extends EloquentBuilder
 {
     /**
@@ -246,7 +249,7 @@ class Builder extends EloquentBuilder
     {
         $query = $hasQuery->getQuery();
         // Get the number of related objects for each possible parent.
-        $relations = $query->pluck($relation->getHasCompareKey())->filter(function($value) {
+        $relations = $query->pluck($relation->getHasCompareKey())->filter(function ($value) {
             return $value !== null && $value !== '';
         });
         $relationCount = array_count_values(array_map(function ($id) {

@@ -12,7 +12,7 @@ cache, session, database, queue extension package
 [![Packagist](https://img.shields.io/packagist/dt/crazyluv/laravel-couchbase.svg?style=flat-square)](https://packagist.org/packages/crazyluv/laravel-couchbase)
 [![Packagist](https://img.shields.io/packagist/v/crazyluv/laravel-couchbase.svg?style=flat-square)](https://packagist.org/packages/crazyluv/laravel-couchbase)
 [![Packagist](https://img.shields.io/packagist/l/crazyluv/laravel-couchbase.svg?style=flat-square)](https://packagist.org/packages/crazyluv/laravel-couchbase)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e775c5758be749868fcd8ac6680dfc69)](https://www.codacy.com/app/yuuki-takezawa/Laravel-Couchbase?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=crazyluv/Laravel-Couchbase&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8b43f4dfdfd94c2ea5735105e08a0d50)](https://www.codacy.com/app/crazyluv/Laravel-Couchbase?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=crazyluv/Laravel-Couchbase&amp;utm_campaign=Badge_Grade)
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/944f9bc0-7ee6-4f5f-b371-8ec216ea317e/mini.png)](https://insight.sensiolabs.com/projects/944f9bc0-7ee6-4f5f-b371-8ec216ea317e)
 

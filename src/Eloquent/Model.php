@@ -115,7 +115,7 @@ abstract class Model extends BaseModel
     protected static $dispatcher;
 
     /**
-     * The array of booted models.
+    * The array of booted models.
      *
      * @var array
      */
@@ -172,8 +172,7 @@ abstract class Model extends BaseModel
     /**
      * Create a new Eloquent model instance.
      *
-     * @param  array  $attributes
-     * @return void
+     * @param array $attributes
      */
     public function __construct(array $attributes = [])
     {
@@ -185,7 +184,6 @@ abstract class Model extends BaseModel
     /**
      * Check if the model needs to be booted and if so, do it.
      *
-     * @return void
      */
     protected function bootIfNotBooted()
     {
@@ -1031,7 +1029,8 @@ abstract class Model extends BaseModel
     /**
      * Get a new query builder instance for the connection.
      *
-     * @return Builder
+     * @return \Ytake\LaravelCouchbase\Query\Builder
+     * @throws \Exception
      */
     protected function newBaseQueryBuilder()
     {
@@ -1341,6 +1340,7 @@ abstract class Model extends BaseModel
      * This method protects developers from running forceDelete when trait is missing.
      *
      * @return bool|null
+     * @throws \Exception
      */
     public function forceDelete()
     {
@@ -1372,8 +1372,9 @@ abstract class Model extends BaseModel
     /**
      * @return bool
      */
-    public function isActive() {
-        if ($this->expireDate == null) {
+    public function isExpired()
+    {
+        if (!$this->offsetExists('expireDate')) {
             return true;
         }
 

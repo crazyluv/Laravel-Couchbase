@@ -133,7 +133,7 @@ class EmbedsMany extends EmbedsOneOrMany
     /**
      * Dissociate the model instance from the given parent, without saving it to the database.
      *
-     * @param mixed $ids
+     * @param mixed $id
      * @return int
      */
     public function dissociate($ids = [])
