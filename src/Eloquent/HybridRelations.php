@@ -53,7 +53,7 @@ trait HybridRelations
     public function morphOne($related, $name, $type = null, $id = null, $localKey = null)
     {
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, 'Crazyluv\LaravelCouchbase\Eloquent\Eloquent\CouchbaseModel')) {
+        if (!is_subclass_of($related, Model::class)) {
             return parent::morphOne($related, $name, $type, $id, $localKey);
         }
         $instance = new $related;
@@ -73,7 +73,7 @@ trait HybridRelations
     public function hasMany($related, $foreignKey = null, $localKey = null)
     {
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, 'Crazyluv\LaravelCouchbase\Eloquent\Eloquent\CouchbaseModel')) {
+        if (!is_subclass_of($related, Model::class)) {
             return parent::hasMany($related, $foreignKey, $localKey);
         }
         $foreignKey = $foreignKey ?: $this->getForeignKey();
@@ -94,7 +94,7 @@ trait HybridRelations
     public function morphMany($related, $name, $type = null, $id = null, $localKey = null)
     {
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, 'Crazyluv\LaravelCouchbase\Eloquent\Eloquent\CouchbaseModel')) {
+        if (!is_subclass_of($related, Model::class)) {
             return parent::morphMany($related, $name, $type, $id, $localKey);
         }
         $instance = new $related;
@@ -126,7 +126,7 @@ trait HybridRelations
             $relation = $caller['function'];
         }
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, 'Crazyluv\LaravelCouchbase\Eloquent\Eloquent\CouchbaseModel')) {
+        if (!is_subclass_of($related, Model::class)) {
             return parent::belongsTo($related, $foreignKey, $otherKey, $relation);
         }
         // If no foreign key was supplied, we can use a backtrace to guess the proper
@@ -199,7 +199,7 @@ trait HybridRelations
             $relation = $this->guessBelongsToManyRelation();
         }
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, 'Crazyluv\LaravelCouchbase\Eloquent\Eloquent\CouchbaseModel')) {
+        if (!is_subclass_of($related, Model::class)) {
             return parent::belongsToMany($related, $collection, $foreignKey, $otherKey, $parentKey, $relatedKey, $relation);
         }
         // First, we'll need to determine the foreign key and "other key" for the

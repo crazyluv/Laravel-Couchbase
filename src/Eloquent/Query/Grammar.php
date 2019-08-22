@@ -2,6 +2,7 @@
 namespace Crazyluv\LaravelCouchbase\Eloquent\Query;
 use Exception;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\Builder as BaseBuilder;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Query\Grammars\Grammar as BaseGrammar;
@@ -196,9 +197,23 @@ class Grammar extends BaseGrammar
      */
     protected function whereIn(BaseBuilder $query, $where)
     {
-        $values = $this->parameterize($where['values'] ?? []);
-        $where['column'] = $this->replaceColumnIfMetaId($where['column'], $query);
-        return $this->wrap($where['column']) . ' in [' . $values . ']';
+        if (! empty($where['values'])) {
+            $values = $this->parameterize($where['values'] ?? []);
+            $where['column'] = $this->replaceColumnIfMetaId($where['column'], $query);
+            return $this->wrap($where['column']) . ' in [' . $values . ']';
+        }
+
+        return '0 = 1';
+    }
+
+    protected function whereInRaw(Builder $query, $where)
+    {
+        if (! empty($where['values'])) {
+            $where['column'] = $this->replaceColumnIfMetaId($where['column'], $query);
+            return $this->wrap($where['column']).' in ['.implode(', ', $where['values']).']';
+        }
+
+        return '0 = 1';
     }
     /**
      * Compile a raw where clause.
