@@ -2,7 +2,6 @@
 namespace Crazyluv\LaravelCouchbase\Eloquent\Query;
 use Exception;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\Builder as BaseBuilder;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Query\Grammars\Grammar as BaseGrammar;
@@ -206,7 +205,7 @@ class Grammar extends BaseGrammar
         return '0 = 1';
     }
 
-    protected function whereInRaw(Builder $query, $where)
+    protected function whereInRaw(BaseBuilder $query, $where)
     {
         if (! empty($where['values'])) {
             $where['column'] = $this->replaceColumnIfMetaId($where['column'], $query);
@@ -244,9 +243,23 @@ class Grammar extends BaseGrammar
      */
     protected function whereNotIn(BaseBuilder $query, $where)
     {
-        $values = $this->parameterize($where['values'] ?? []);
-        $where['column'] = $this->replaceColumnIfMetaId($where['column'], $query);
-        return $this->wrap($where['column']) . ' not in [' . $values . ']';
+        if (! empty($where['values'])) {
+            $values = $this->parameterize($where['values'] ?? []);
+            $where['column'] = $this->replaceColumnIfMetaId($where['column'], $query);
+            return $this->wrap($where['column']) . ' not in [' . $values . ']';
+        }
+
+        return '1 = 1';
+    }
+
+    protected function whereNotInRaw(BaseBuilder $query, $where)
+    {
+        if (! empty($where['values'])) {
+            $where['column'] = $this->replaceColumnIfMetaId($where['column'], $query);
+            return $this->wrap($where['column']).' not in ['.implode(', ', $where['values']).']';
+        }
+
+        return '1 = 1';
     }
     /**
      * @param string $column
